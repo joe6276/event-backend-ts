@@ -1,0 +1,26 @@
+GET http://localhost:4000/events
+
+###
+GET http://localhost:4000/events/ahsdjfjasdj
+###
+POST http://localhost:4000/events
+Content-Type: application/json
+
+{
+    "title":"Title One",
+    "description":"Updated Description",
+    "date":"2023-12-12"
+}
+
+###
+PUT http://localhost:4000/events/ahsdjfjasdj
+Content-Type: application/json
+
+{
+    "title":"Title One",
+    "description":"Updated Description",
+    "date":"2023-12-12"
+}
+
+###
+DELETE  http://localhost:4000/events/97b5f4d5-2640-480f-8b1c-72d872a148b1
