@@ -4,23 +4,10 @@ import mssql from 'mssql'
 import sqlConfig from '../Config/config'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-
+import {ExtendedLBody,ExtendedSUBody,ExtendedRequest} from '../Models/index'
 dotenv.config()
 
-interface ExtendedSUBody extends Request{
- body:{
-    username:string
-    email:string
-    password:string
- }
-}
 
-interface ExtendedLBody extends Request{
-  body:{
-    email:string
-    password:string
-  }
-}
 export const signupUser= async (req:ExtendedSUBody, res:Response)=>{
 
 try {
@@ -64,6 +51,15 @@ export const loginUser= async (req:ExtendedLBody, res:Response)=>{
         }else{
             return res.status(404).json({messsage:'User Not Found'})
         }
+    } catch (error) {
+        
+    }
+}
+
+export const homePage= async(req:ExtendedRequest, res:Response)=>{
+    try {
+            const user =req.info;
+            res.status(200).json(`Welcome to Events System ${user.username}`)
     } catch (error) {
         
     }
