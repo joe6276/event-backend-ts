@@ -42,3 +42,27 @@ AS
 BEGIN
 DELETE FROM EventsTable WHERE id =@id
 END
+
+
+
+CREATE TABLE usrd(
+id INT IDENTITY,
+username VARCHAR(100),
+email VARCHAR(200) UNIQUE,
+password VARCHAR(200))
+
+
+CREATE PROCEDURE insertUser (@email VARCHAR(200) , @password VARCHAR(200) , @username VARCHAR(200))
+AS
+BEGIN
+
+INSERT INTO usrd(email,password,username) VALUES (@email,@password,@username)
+
+END
+
+CREATE PROCEDURE getEmail(@email VARCHAR(200))
+AS
+BEGIN
+SELECT * FROM usrd WHERE email =@email
+
+END

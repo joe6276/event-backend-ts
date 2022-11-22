@@ -1,7 +1,7 @@
 GET http://localhost:4000/events
 
 ###
-GET http://localhost:4000/events/ahsdjfjasdj
+GET http://localhost:4000/events/bb360fff-0e8c-42c5-89c9-b16df3b6e63b
 ###
 POST http://localhost:4000/events
 Content-Type: application/json
@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:4000/events/ahsdjfjasdj
+PUT http://localhost:4000/events/bb360fff-0e8c-42c5-89c9-b16df3b6e63b
 Content-Type: application/json
 
 {
@@ -23,4 +23,26 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:4000/events/97b5f4d5-2640-480f-8b1c-72d872a148b1
+DELETE  http://localhost:4000/events/bb360fff-0e8c-42c5-89c9-b16df3b6e63b
+
+
+###
+
+POST http://localhost:4000/user/signup
+Content-Type: application/json
+
+{
+    "username":"John",
+    "email":"johndoe@gmail.com",
+    "password":"12345678"
+}
+
+
+###
+POST http://localhost:4000/user/login
+Content-Type: application/json
+
+{
+    "email":"johndoe@gmail.com",
+    "password":"12345678"
+}
