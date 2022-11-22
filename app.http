@@ -32,8 +32,8 @@ POST http://localhost:4000/user/signup
 Content-Type: application/json
 
 {
-    "username":"John",
-    "email":"johndoe@gmail.com",
+    "username":"Jonathan",
+    "email":"jonathan@gmail.com",
     "password":"12345678"
 }
 
@@ -46,3 +46,8 @@ Content-Type: application/json
     "email":"johndoe@gmail.com",
     "password":"12345678"
 }
+
+
+###
+GET http://localhost:4000/user
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIiwiZW1haWwiOiJqb2huZG9lQGdtYWlsLmNvbSIsImlhdCI6MTY2OTA4MzAxMCwiZXhwIjoxNjY5MDgzMTMwfQ.AKdPRKNLwQFhMJSz2cXkw80DSU4KKfjeu4L2YGmb9A4

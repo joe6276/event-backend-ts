@@ -1,5 +1,6 @@
 import {Router} from 'express'
-import { loginUser, signupUser } from '../controller/userController'
+import { homePage, loginUser, signupUser } from '../controller/userController'
+import { verifyToken } from '../middleware'
 
 
 const userRouter = Router()
@@ -7,6 +8,7 @@ const userRouter = Router()
 
 userRouter.post('/signup',signupUser)
 userRouter.post('/login',loginUser)
+userRouter.get('/',verifyToken,homePage)
 
 
 export default userRouter
