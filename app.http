@@ -56,11 +56,3 @@ Content-Type: application/json
 }
 
 
-
-
-###
-GET http://localhost:4000/user
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIiwiZW1haWwiOiJqb2huZG9lQGdtYWlsLmNvbSIsImlhdCI6MTY2OTA4MzE2MCwiZXhwIjoxNjY5MDgzMjgwfQ.3oPzmj2ONqcrbACBJA_6rZSIAKBw5nRBuqirSmfi-Vo
-###
-GET http://localhost:4000/user
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJKb25hdGhhbiIsImVtYWlsIjoiam9uYXRoYW5AZ21haWwuY29tIiwiaWF0IjoxNjY5MDgzNTQ4LCJleHAiOjE2NjkwODM2Njh9.NrPWdqRnjj8FAkiR5TiBury5-fHGdJ4qDnbWobKkWq8
