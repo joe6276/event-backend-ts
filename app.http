@@ -33,7 +33,7 @@ Content-Type: application/json
 {
     "username":"Jonathan",
     "email":"jonathan@gmail.com",
-    "password":"12345678"
+    
 }
 
 
@@ -43,7 +43,7 @@ Content-Type: application/json
 
 {
     "email":"johndoe@gmail.com",
-    "password":"12345678"
+    
 }
 
 ###
@@ -52,7 +52,7 @@ Content-Type: application/json
 
 {
     "email":"jonathan@gmail.com",
-    "password":"12345678"
+    
 }
 
 
