@@ -1,7 +1,7 @@
 GET http://localhost:4000/events
 
 ###
-GET http://localhost:4000/events/bb360fff-0e8c-42c5-89c9-b16df3b6e63b
+GET http://localhost:4000/events/269443b1-2975-41d3-ab33-5467811fa007
 ###
 POST http://localhost:4000/events
 Content-Type: application/json
@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:4000/events/bb360fff-0e8c-42c5-89c9-b16df3b6e63b
+PUT http://localhost:4000/events/269443b1-2975-41d3-ab33-5467811fa007
 Content-Type: application/json
 
 {
@@ -23,8 +23,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:4000/events/bb360fff-0e8c-42c5-89c9-b16df3b6e63b
-
+DELETE  http://localhost:4000/events/269443b1-2975-41d3-ab33-5467811fa007
 
 ###
 
@@ -34,7 +33,7 @@ Content-Type: application/json
 {
     "username":"Jonathan",
     "email":"jonathan@gmail.com",
-    "password":"12345678"
+    
 }
 
 
@@ -44,10 +43,16 @@ Content-Type: application/json
 
 {
     "email":"johndoe@gmail.com",
-    "password":"12345678"
+    
+}
+
+###
+POST http://localhost:4000/user/login
+Content-Type: application/json
+
+{
+    "email":"jonathan@gmail.com",
+    
 }
 
 
-###
-GET http://localhost:4000/user
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJKb2huIiwiZW1haWwiOiJqb2huZG9lQGdtYWlsLmNvbSIsImlhdCI6MTY2OTA4MzAxMCwiZXhwIjoxNjY5MDgzMTMwfQ.AKdPRKNLwQFhMJSz2cXkw80DSU4KKfjeu4L2YGmb9A4

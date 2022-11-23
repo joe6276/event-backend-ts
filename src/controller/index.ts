@@ -1,7 +1,8 @@
 import { Request, RequestHandler, Response } from 'express'
-import mssql from 'mssql'
-import sqlConfig from '../Config/config'
 import {v4 as uid} from 'uuid'
+import Connection from '../DatabaseHelper/db'
+
+const db= new Connection()
  interface ExtendedRequest extends Request{
     body:{
 
@@ -13,8 +14,7 @@ import {v4 as uid} from 'uuid'
 
 export const getEvents = async (req:Request , res:Response)=>{
   try {
-      const pool = await  mssql.connect(sqlConfig)
-    const events = await (await pool.request().execute('getEvents')).recordset
+    const events =await (await db.exec('getEvents')).recordset
     if(events.length==0){
         return res.status(404).json({
             message:" No Product Found"
@@ -30,8 +30,7 @@ export const getEvents = async (req:Request , res:Response)=>{
 export const getEvent:RequestHandler<{id:string}>= async (req, res)=>{
 
      try {
-    const pool = await  mssql.connect(sqlConfig)
-    const events = await (await pool.request().input('id', mssql.VarChar,req.params.id ).execute('getEvent')).recordset
+    const events = (await db.exec('getEvent',{id:req.params.id} )).recordset
     if(events.length){
       return  res.status(200).json(events)
     }else{
@@ -47,16 +46,10 @@ export const getEvent:RequestHandler<{id:string}>= async (req, res)=>{
 export const insertEvent = async (req:ExtendedRequest, res:Response)=>{
 
     try {
-           const pool = await  mssql.connect(sqlConfig)
+          
            const {title,description,date} = req.body
            const id = uid()
-           await pool.request()
-           .input('id', mssql.VarChar, id)
-           .input('title', mssql.VarChar, title)
-           .input('description', mssql.VarChar, description)
-           .input('date', mssql.VarChar, date)
-           .execute('insertEvent')
-
+           db.exec('insertEvent',{id,title,description,date})
            return res.status(200).json({message:'Event Added!!'})
     } catch (error:any) {
         return res.status(404).json(error.message)
@@ -65,17 +58,11 @@ export const insertEvent = async (req:ExtendedRequest, res:Response)=>{
 }
 
 export const updateEvent: RequestHandler<{id:string}> = async (req,res)=>{
-    try {
-        const pool = await  mssql.connect(sqlConfig)  
+    try { 
            const {title,description,date} = req.body
-            const event = await (await pool.request().input('id', req.params.id).execute('getEvent')).recordset
+             const event = (await db.exec('getEvent',{id:req.params.id} )).recordset
             if(event.length !==0){
-           await pool.request()
-           .input('id', mssql.VarChar, req.params.id)
-           .input('title', mssql.VarChar, title)
-           .input('description', mssql.VarChar, description)
-           .input('date', mssql.VarChar, date)
-           .execute('updateEvent')
+              db.exec('updateEvent',{id:req.params.id, title,description,date})
             return res.json({message:'Event Updated !!'})
             }
             else{
@@ -90,12 +77,10 @@ export const updateEvent: RequestHandler<{id:string}> = async (req,res)=>{
 
 export const deleteEvent:RequestHandler<{id:string}> = async (req,res)=>{
     try {
-           const pool = await  mssql.connect(sqlConfig)  
-           const event = await (await pool.request().input('id', req.params.id).execute('getEvent')).recordset          
+          
+            const event = (await db.exec('getEvent',{id:req.params.id} )).recordset          
            if(event.length !== 0){
-            await pool.request()
-           .input('id', mssql.VarChar, req.params.id)
-           .execute('deleteEvent')
+            db.exec('deleteEvent', {id:req.params.id})
              return res.json({message:'Event Deleted !!'})
            }else{
              return res.json({message:'No Event Found'})

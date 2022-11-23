@@ -1,27 +1,21 @@
 import { Request, Response } from "express"
 import bcrypt from 'bcrypt'
-import mssql from 'mssql'
-import sqlConfig from '../Config/config'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import Connection from'../DatabaseHelper/db'
 import {ExtendedLBody,ExtendedSUBody,ExtendedRequest} from '../Models/index'
 dotenv.config()
 
-
+const db= new Connection()
 export const signupUser= async (req:ExtendedSUBody, res:Response)=>{
 
 try {
     const {username,password,email}= req.body
     const hashedpassword = await bcrypt.hash(password,8)
-    const pool =await mssql.connect(sqlConfig)
-    await pool.request()
-    .input('email',email)
-    .input('username', username)
-    .input('password', hashedpassword)
-    .execute('insertUser') 
+    await db.exec('insertUser',{email,username,password:hashedpassword}) 
     return res.status(200).json({message:'User added Successfully'})
 } catch (error:any) {
-    return res.status(404).json(error.message)
+    return res.status(400).json({error:error.message})
 }
 
 }
@@ -30,13 +24,10 @@ export const loginUser= async (req:ExtendedLBody, res:Response)=>{
     try {
          const {password,email}= req.body
         //  check if email exist
-        const pool = await mssql.connect(sqlConfig)
-        const user= await(
-            await pool.request()
-        .input('email', email)
-        .execute('getEmail')
-        ).recordset[0]
         
+        const user= (await db.exec('getEmail',{email})).recordset[0]
+        
+
         if(user){
         const checkPassword =await bcrypt.compare(password,user.password)
         if(checkPassword){
